@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Cotacoes Monetarias</string>
+    <string name="dolar">Dólar</string>
+    <string name="euro">Euro</string>
+    <string name="visualizar_tudo">Visualizar tudo</string>
+    <string name="dolar_comercial">Dólar Comercial</string>
+    <string name="home">Home</string>
+    <string name="copiar_para_area_de_transferencia">Copiar para a área de transferência</string>
+</resources>

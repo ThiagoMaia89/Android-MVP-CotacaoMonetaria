@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "Cotacao_Dolar_e_Euro"
