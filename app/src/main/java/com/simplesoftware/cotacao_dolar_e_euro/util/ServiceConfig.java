@@ -1,6 +1,7 @@
 package com.simplesoftware.cotacao_dolar_e_euro.util;
 
 import com.simplesoftware.cotacao_dolar_e_euro.classes.Dolar;
+import com.simplesoftware.cotacao_dolar_e_euro.classes.DolarTurismo;
 import com.simplesoftware.cotacao_dolar_e_euro.classes.Euro;
 import com.simplesoftware.cotacao_dolar_e_euro.classes.Moedas;
 
@@ -13,6 +14,9 @@ public interface ServiceConfig {
 
     @GET("all/USD/")
     Call<Dolar> buscarDolar();
+
+    @GET("all/USDT/")
+    Call<DolarTurismo> buscarDolarTurismo();
 
     @GET("all/EUR")
     Call<Euro> buscarEuro();

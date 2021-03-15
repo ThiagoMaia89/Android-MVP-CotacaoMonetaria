@@ -18,7 +18,7 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.simplesoftware.cotacao_dolar_e_euro.R;
-import com.simplesoftware.cotacao_dolar_e_euro.classes.Euro;
+import com.simplesoftware.cotacao_dolar_e_euro.classes.DolarTurismo;
 import com.simplesoftware.cotacao_dolar_e_euro.util.RetrofitConfig;
 
 import java.time.LocalDate;
@@ -27,7 +27,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class EuroActivity extends AppCompatActivity {
+public class DolarTurismoActivity extends AppCompatActivity {
 
     private TextView tv_high, tv_low, tv_varBid, tv_pctChange, tv_bid, tv_ask;
     private String copiarCotacao;
@@ -38,7 +38,7 @@ public class EuroActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_euro);
+        setContentView(R.layout.activity_dolar_turismo);
 
         instanciarComponentes();
         buscarInfo();
@@ -60,47 +60,49 @@ public class EuroActivity extends AppCompatActivity {
     }
 
     public void buscarInfo() {
-        Call<Euro> callEuro = new RetrofitConfig().getServiceConfig().buscarEuro();
-        callEuro.enqueue(new Callback<Euro>() {
+        Call<DolarTurismo> dolarTurismoCall = new RetrofitConfig().getServiceConfig().buscarDolarTurismo();
+        dolarTurismoCall.enqueue(new Callback<DolarTurismo>() {
             @Override
-            public void onResponse(Call<Euro> call, Response<Euro> response) {
+            public void onResponse(Call<DolarTurismo> call, Response<DolarTurismo> response) {
                 if (!response.isSuccessful()) {
-                    Toast.makeText(EuroActivity.this, "Erro: " + response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DolarTurismoActivity.this, "Erro: " + response.code(), Toast.LENGTH_SHORT).show();
                 } else {
-                    Euro euro = response.body();
-                    tv_high.setText(euro.EUR.getHigh());
-                    tv_low.setText(euro.EUR.getLow());
-                    tv_varBid.setText(euro.EUR.getVarBid());
-                    tv_pctChange.setText(euro.EUR.getPctChange());
-                    tv_bid.setText(euro.EUR.getBid());
-                    tv_ask.setText(euro.EUR.getAsk());
+                    DolarTurismo dolarTurismo = response.body();
+                    tv_high.setText(dolarTurismo.USDT.getHigh());
+                    tv_low.setText(dolarTurismo.USDT.getLow());
+                    tv_varBid.setText(dolarTurismo.USDT.getVarBid());
+                    tv_pctChange.setText(dolarTurismo.USDT.getPctChange());
+                    tv_bid.setText(dolarTurismo.USDT.getBid());
+                    tv_ask.setText(dolarTurismo.USDT.getAsk());
 
-                    copiarCotacao = euro.EUR.toString();
+                    copiarCotacao = dolarTurismo.USDT.toString();
+
                 }
             }
 
             @Override
-            public void onFailure(Call<Euro> call, Throwable t) {
-                Toast.makeText(EuroActivity.this, "Erro: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<DolarTurismo> call, Throwable t) {
+                Toast.makeText(DolarTurismoActivity.this, "Erro: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    public void copiarCotacao(View v) {
+
+    public void copiarCotacao(View view) {
         try {
-            Toast.makeText(EuroActivity.this, "Cotação copiada para a Área de Transferência", Toast.LENGTH_SHORT).show();
+            Toast.makeText(DolarTurismoActivity.this, "Cotação copiada para a Área de Transferência", Toast.LENGTH_SHORT).show();
 
             ClipboardManager clipboard = (ClipboardManager)
                     getSystemService(Context.CLIPBOARD_SERVICE);
 
-            ClipData cpy_all = ClipData.newPlainText("text", "Euro:\n" + dataAtual + "\n\n" + copiarCotacao);
+            ClipData cpy_all = ClipData.newPlainText("text", "Dólar Turismo:\n" + dataAtual + "\n\n" + copiarCotacao);
             clipboard.setPrimaryClip(cpy_all);
         } catch (Exception e) {
             Toast.makeText(this, "Tente novamente" + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void HOME(View v){
+    public void HOME(View view) {
         startActivity(new Intent(this, MainActivity.class));
     }
 

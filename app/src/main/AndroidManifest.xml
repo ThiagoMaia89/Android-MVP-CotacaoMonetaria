@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.simplesoftware.cotacao_dolar_e_euro">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,8 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Cotacao_Dolar_e_Euro">
+        <activity android:name=".activitys.DolarTurismoActivity"></activity>
         <activity android:name=".activitys.EuroActivity" />
-        <activity android:name=".activitys.DolarActivity"/>
+        <activity android:name=".activitys.DolarActivity" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-9823376642365552~6439747620" />
+
         <activity android:name=".activitys.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

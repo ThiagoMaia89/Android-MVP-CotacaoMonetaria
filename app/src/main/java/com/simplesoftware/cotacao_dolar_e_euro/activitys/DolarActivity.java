@@ -2,6 +2,11 @@ package com.simplesoftware.cotacao_dolar_e_euro.activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.simplesoftware.cotacao_dolar_e_euro.R;
 import com.simplesoftware.cotacao_dolar_e_euro.classes.Dolar;
 import com.simplesoftware.cotacao_dolar_e_euro.classes.Moedas;
@@ -30,6 +35,8 @@ public class DolarActivity extends AppCompatActivity {
     private TextView tv_high, tv_low, tv_varBid, tv_pctChange, tv_bid, tv_ask;
     private String copiarCotacao;
     private LocalDate dataAtual;
+    private AdView adView;
+    private AdRequest adRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +45,7 @@ public class DolarActivity extends AppCompatActivity {
 
         instanciarComponentes();
         buscarInfo();
+        googleAds();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             dataAtual = LocalDate.now();
@@ -99,5 +107,18 @@ public class DolarActivity extends AppCompatActivity {
         startActivity(new Intent(this, MainActivity.class));
     }
 
+    public void googleAds() {
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        adRequest = new AdRequest.Builder().build();
+        adView = findViewById(R.id.adView);
+        adView.loadAd(adRequest);
+
+    }
 
 }

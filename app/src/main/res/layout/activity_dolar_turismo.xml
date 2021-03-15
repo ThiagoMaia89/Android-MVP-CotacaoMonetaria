@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/app_background"
     android:padding="20dp"
-    tools:context=".activitys.DolarActivity">
+    tools:context=".activitys.DolarTurismoActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -23,13 +22,12 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/dolar_comercial"
+        android:text="Dólar Turismo"
         android:textColor="@color/white"
         android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -249,5 +247,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:maxImageSize="35dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

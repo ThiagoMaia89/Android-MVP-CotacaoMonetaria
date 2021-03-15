@@ -12,14 +12,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.simplesoftware.cotacao_dolar_e_euro.R;
 import com.simplesoftware.cotacao_dolar_e_euro.classes.Dolar;
+import com.simplesoftware.cotacao_dolar_e_euro.classes.DolarTurismo;
 import com.simplesoftware.cotacao_dolar_e_euro.classes.Euro;
 import com.simplesoftware.cotacao_dolar_e_euro.classes.Moedas;
 import com.simplesoftware.cotacao_dolar_e_euro.util.RetrofitConfig;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -29,9 +34,8 @@ import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText et_dolar, et_euro;
+    private EditText et_dolar, et_euro, et_dolarTurismo;
     private TextView tv_data;
-    private LocalDate localDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +44,15 @@ public class MainActivity extends AppCompatActivity {
 
         instanciarComponentes();
         buscarInfoDolar();
+        buscarInfoDolarTurismo();
         buscarInfoEuro();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            localDate = LocalDate.now();
-            tv_data.setText(localDate.toString());
-        } else {
-            tv_data.setText("");
-        }
+
+        Date data = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String dataFormatada = sdf.format(data);
+
+        tv_data.setText(dataFormatada);
 
     }
 
@@ -55,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         et_dolar = findViewById(R.id.et_dolar);
         et_euro = findViewById(R.id.et_euro);
         tv_data = findViewById(R.id.tv_data);
+        et_dolarTurismo = findViewById(R.id.et_dolarTurismo);
     }
 
     public void buscarInfoDolar() {
@@ -77,6 +83,28 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void buscarInfoDolarTurismo(){
+        Call<DolarTurismo> dolarTurismoCall = new RetrofitConfig().getServiceConfig().buscarDolarTurismo();
+        dolarTurismoCall.enqueue(new Callback<DolarTurismo>() {
+            @Override
+            public void onResponse(Call<DolarTurismo> call, Response<DolarTurismo> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(MainActivity.this, "Erro: " + response.code(), Toast.LENGTH_SHORT).show();
+                } else {
+                    DolarTurismo dolarTurismo = response.body();
+                    String showDolarTurismo = "R$ " + dolarTurismo.USDT.getHigh().replace(".", ",");
+                    et_dolarTurismo.setText(showDolarTurismo);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DolarTurismo> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "Erro: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
     public void buscarInfoEuro() {
         Call<Euro> callEuro = new RetrofitConfig().getServiceConfig().buscarEuro();
@@ -107,8 +135,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, EuroActivity.class));
     }
 
-    public void HOME(View v){
-        startActivity(new Intent (this, MainActivity.class));
+    public void irDolarTurismo(View view) {
+        startActivity(new Intent(this, DolarTurismoActivity.class));
     }
+
+    public void HOME(View v) {
+        startActivity(new Intent(this, MainActivity.class));
+    }
+
 
 }
