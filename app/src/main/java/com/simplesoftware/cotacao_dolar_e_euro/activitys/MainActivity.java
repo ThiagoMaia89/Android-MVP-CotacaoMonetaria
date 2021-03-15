@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.simplesoftware.cotacao_dolar_e_euro.R;
+import com.simplesoftware.cotacao_dolar_e_euro.classes.BitCoin;
 import com.simplesoftware.cotacao_dolar_e_euro.classes.Dolar;
 import com.simplesoftware.cotacao_dolar_e_euro.classes.DolarTurismo;
 import com.simplesoftware.cotacao_dolar_e_euro.classes.Euro;
@@ -34,7 +35,7 @@ import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText et_dolar, et_euro, et_dolarTurismo;
+    private EditText et_dolar, et_euro, et_dolarTurismo, et_btc;
     private TextView tv_data;
 
     @Override
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         buscarInfoDolar();
         buscarInfoDolarTurismo();
         buscarInfoEuro();
+        buscarInfoBitCoin();
 
 
         Date data = new Date();
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         et_euro = findViewById(R.id.et_euro);
         tv_data = findViewById(R.id.tv_data);
         et_dolarTurismo = findViewById(R.id.et_dolarTurismo);
+        et_btc = findViewById(R.id.et_btc);
     }
 
     public void buscarInfoDolar() {
@@ -127,17 +130,43 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void buscarInfoBitCoin(){
+        Call<BitCoin> bitCoinCall = new RetrofitConfig().getServiceConfig().buscarBitCoin();
+        bitCoinCall.enqueue(new Callback<BitCoin>() {
+            @Override
+            public void onResponse(Call<BitCoin> call, Response<BitCoin> response) {
+                if (!response.isSuccessful()){
+                    Toast.makeText(MainActivity.this, "Erro: " + response.code(), Toast.LENGTH_SHORT).show();
+                } else{
+                    BitCoin bitCoin = response.body();
+                    String showBitCoin = "R$ " + bitCoin.BTC.getHigh().replace(".", ",");
+                    et_btc.setText(showBitCoin);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BitCoin> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "Erro: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     public void irDolar(View v) {
         startActivity(new Intent(this, DolarActivity.class));
+    }
+
+    public void irDolarTurismo(View view) {
+        startActivity(new Intent(this, DolarTurismoActivity.class));
     }
 
     public void irEuro(View view) {
         startActivity(new Intent(this, EuroActivity.class));
     }
 
-    public void irDolarTurismo(View view) {
-        startActivity(new Intent(this, DolarTurismoActivity.class));
+    public void irBtc(View view) {
+        startActivity(new Intent(this, BitCoinActivity.class));
     }
+
 
     public void HOME(View v) {
         startActivity(new Intent(this, MainActivity.class));

@@ -161,6 +161,49 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/border"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/et_euro"
+                android:text="BitCoin"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/et_btc"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:autofillHints="Valor Euro"
+                android:background="@drawable/border"
+                android:backgroundTint="@color/white"
+                android:ems="10"
+                android:enabled="false"
+                android:inputType="numberDecimal"
+                android:textAlignment="center"
+                android:textColor="#368BA5"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/icon_irBtc"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="10dp"
+                android:contentDescription="@string/visualizar_tudo"
+                android:onClick="irBtc"
+                android:src="@drawable/ic_arrow" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"

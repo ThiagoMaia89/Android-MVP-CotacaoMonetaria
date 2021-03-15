@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Cotacao_Dolar_e_Euro">
-        <activity android:name=".activitys.DolarTurismoActivity"></activity>
+        <activity android:name=".activitys.BitCoinActivity"></activity>
+        <activity android:name=".activitys.DolarTurismoActivity" />
         <activity android:name=".activitys.EuroActivity" />
         <activity android:name=".activitys.DolarActivity" />
 
