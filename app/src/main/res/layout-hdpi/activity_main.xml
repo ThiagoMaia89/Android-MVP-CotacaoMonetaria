@@ -11,8 +11,8 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginTop="20dp"
         android:src="@drawable/money_blue"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +33,7 @@
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:background="@drawable/border"
             android:onClick="irDolar"
             android:gravity="center"
@@ -41,17 +41,17 @@
 
             <TextView
                 android:id="@+id/tv_teste"
-                android:layout_width="100dp"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:labelFor="@id/et_dolar"
                 android:text="Dólar\nComercial"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="12sp" />
 
             <EditText
                 android:id="@+id/et_dolar"
-                android:layout_width="130dp"
+                android:layout_width="100dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="10dp"
                 android:autofillHints="Valor Dólar"
@@ -61,19 +61,19 @@
                 android:inputType="numberDecimal"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/pct_dolar"
-                android:layout_width="50dp"
+                android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
                 android:gravity="end"
                 android:text="pct"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <ImageView
                 android:id="@+id/dolar_arrow"
@@ -95,7 +95,7 @@
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_marginTop="10dp"
             android:onClick="irDolarTurismo"
             android:background="@drawable/border"
@@ -103,17 +103,17 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="100dp"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:labelFor="@id/et_dolar"
                 android:text="Dólar\nTurismo"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="12sp" />
 
             <EditText
                 android:id="@+id/et_dolarTurismo"
-                android:layout_width="130dp"
+                android:layout_width="100dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="10dp"
                 android:autofillHints="Valor Dólar"
@@ -123,19 +123,19 @@
                 android:inputType="numberDecimal"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/pct_dolarTurismo"
-                android:layout_width="50dp"
+                android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
                 android:gravity="end"
                 android:text="pct"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <ImageView
                 android:id="@+id/dolarTurismo_arrow"
@@ -156,7 +156,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_marginTop="10dp"
             android:onClick="irEuro"
             android:background="@drawable/border"
@@ -164,17 +164,17 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="100dp"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:labelFor="@+id/et_euro"
                 android:text="@string/euro"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="12sp" />
 
             <EditText
                 android:id="@+id/et_euro"
-                android:layout_width="130dp"
+                android:layout_width="100dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="10dp"
                 android:autofillHints="Valor Euro"
@@ -184,19 +184,19 @@
                 android:inputType="numberDecimal"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/pct_euro"
-                android:layout_width="50dp"
+                android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
                 android:gravity="end"
                 android:text="pct"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <ImageView
                 android:id="@+id/euro_arrow"
@@ -217,7 +217,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/border"
             android:onClick="irBtc"
@@ -225,17 +225,17 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="100dp"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:labelFor="@+id/et_euro"
                 android:text="BitCoin"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="12sp" />
 
             <EditText
                 android:id="@+id/et_btc"
-                android:layout_width="130dp"
+                android:layout_width="100dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="10dp"
                 android:autofillHints="Valor Euro"
@@ -245,19 +245,19 @@
                 android:inputType="numberDecimal"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="15sp"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/pct_BitCoin"
-                android:layout_width="50dp"
+                android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
                 android:gravity="end"
                 android:text="pct"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="12sp" />
 
             <ImageView
                 android:id="@+id/bitCoin_arrow"

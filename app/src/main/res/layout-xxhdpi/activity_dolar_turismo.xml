@@ -7,14 +7,14 @@
     android:background="@drawable/app_background"
     android:paddingTop="20dp"
     android:paddingHorizontal="20dp"
-    tools:context=".activitys.EuroActivity">
+    tools:context=".activitys.DolarTurismoActivity">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="200dp"
         android:layout_height="100dp"
         android:layout_marginTop="20dp"
-        android:src="@drawable/euro"
+        android:src="@drawable/dolar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,7 +23,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Euro"
+        android:text="Dólar Turismo"
         android:textColor="@color/white"
         android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -223,7 +223,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout4"
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -237,7 +237,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/copiar_para_area_de_transferencia"
+            android:text="Copiar para a área de transferência"
             android:textColor="@color/white" />
 
         <ImageView
@@ -248,6 +248,7 @@
             android:onClick="copiarCotacao"
             android:src="@drawable/ic_copy" />
 
+
     </LinearLayout>
 
     <LinearLayout
@@ -257,10 +258,11 @@
         android:background="@drawable/border"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton2"
+        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.19">
 
 
         <LinearLayout
@@ -275,21 +277,22 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@drawable/brasil_flag" />
 
             <ImageView
                 android:id="@+id/img_inverterConversor"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_marginHorizontal="5dp"
                 android:src="@drawable/ic_arrow" />
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/uniao_europeia_flag" />
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/eua_flag" />
+
 
         </LinearLayout>
 
@@ -346,12 +349,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:text="EUR"
+                android:text="USD"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
+
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_converter"
@@ -388,7 +392,7 @@
     </com.google.android.gms.ads.AdView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
+        android:id="@+id/floatingActionButton3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -400,5 +404,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:maxImageSize="35dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

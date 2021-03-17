@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Cotacoes Monetarias</string>
+    <string name="app_name">Cotação de Moedas</string>
     <string name="dolar">Dólar</string>
     <string name="euro">Euro</string>
     <string name="visualizar_tudo">Visualizar tudo</string>

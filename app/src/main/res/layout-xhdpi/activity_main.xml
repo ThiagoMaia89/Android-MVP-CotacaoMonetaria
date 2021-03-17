@@ -11,8 +11,8 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginTop="20dp"
         android:src="@drawable/money_blue"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +51,7 @@
 
             <EditText
                 android:id="@+id/et_dolar"
-                android:layout_width="130dp"
+                android:layout_width="100dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="10dp"
                 android:autofillHints="Valor Dólar"
@@ -113,7 +113,7 @@
 
             <EditText
                 android:id="@+id/et_dolarTurismo"
-                android:layout_width="130dp"
+                android:layout_width="100dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="10dp"
                 android:autofillHints="Valor Dólar"
@@ -174,7 +174,7 @@
 
             <EditText
                 android:id="@+id/et_euro"
-                android:layout_width="130dp"
+                android:layout_width="100dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="10dp"
                 android:autofillHints="Valor Euro"
@@ -235,7 +235,7 @@
 
             <EditText
                 android:id="@+id/et_btc"
-                android:layout_width="130dp"
+                android:layout_width="100dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="10dp"
                 android:autofillHints="Valor Euro"

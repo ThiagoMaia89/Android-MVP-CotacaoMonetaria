@@ -275,20 +275,20 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@drawable/brasil_flag" />
 
             <ImageView
                 android:id="@+id/img_inverterConversor"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_marginHorizontal="5dp"
                 android:src="@drawable/ic_arrow" />
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@drawable/uniao_europeia_flag" />
 
         </LinearLayout>
