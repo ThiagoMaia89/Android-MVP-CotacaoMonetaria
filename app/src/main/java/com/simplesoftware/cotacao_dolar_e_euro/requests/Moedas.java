@@ -1,4 +1,4 @@
-package com.simplesoftware.cotacao_dolar_e_euro.classes;
+package com.simplesoftware.cotacao_dolar_e_euro.requests;
 
 public class Moedas {
 

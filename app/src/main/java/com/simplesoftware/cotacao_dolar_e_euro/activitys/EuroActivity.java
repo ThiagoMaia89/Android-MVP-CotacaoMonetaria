@@ -2,16 +2,14 @@ package com.simplesoftware.cotacao_dolar_e_euro.activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +19,8 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.simplesoftware.cotacao_dolar_e_euro.R;
-import com.simplesoftware.cotacao_dolar_e_euro.classes.Euro;
+import com.simplesoftware.cotacao_dolar_e_euro.conversor.Conversor;
+import com.simplesoftware.cotacao_dolar_e_euro.requests.Euro;
 import com.simplesoftware.cotacao_dolar_e_euro.util.RetrofitConfig;
 
 import java.text.SimpleDateFormat;
@@ -35,10 +34,8 @@ import retrofit2.Response;
 
 public class EuroActivity extends AppCompatActivity {
 
-    private TextView tv_high, tv_low, tv_varBid, tv_pctChange, tv_bid, tv_ask, tv_data;
+    private TextView tv_high, tv_low, tv_varBid, tv_pctChange, tv_bid, tv_ask, tv_data, tv_titulo;
     private String copiarCotacao;
-    private EditText et_conversor1, et_conversor2;
-    private ImageView img_inverterConversor;
     private LocalDate dataAtual;
     private AdView adView;
     private AdRequest adRequest;
@@ -51,11 +48,6 @@ public class EuroActivity extends AppCompatActivity {
         instanciarComponentes();
         buscarInfo();
         googleAds();
-
-        img_inverterConversor.setImageResource(R.drawable.ic_arrow);
-        et_conversor2.setEnabled(false);
-        et_conversor1.requestFocus();
-
 
         Date data = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());
@@ -77,9 +69,7 @@ public class EuroActivity extends AppCompatActivity {
         tv_bid = findViewById(R.id.tv_bid);
         tv_ask = findViewById(R.id.tv_ask);
         tv_data = findViewById(R.id.tv_data);
-        et_conversor1 = findViewById(R.id.et_conversor1);
-        et_conversor2 = findViewById(R.id.et_conversor2);
-        img_inverterConversor = findViewById(R.id.img_inverterConversor);
+        tv_titulo = findViewById(R.id.tv_titulo);
     }
 
     public void buscarInfo() {
@@ -99,6 +89,13 @@ public class EuroActivity extends AppCompatActivity {
                     tv_ask.setText(euro.EUR.getAsk());
 
                     copiarCotacao = euro.EUR.toString();
+
+                    SharedPreferences spGetString = getSharedPreferences("getString", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = spGetString.edit();
+                    editor.putString("ask", tv_ask.getText().toString());
+                    editor.putString("title", tv_titulo.getText().toString());
+                    editor.apply();
+
                 }
             }
 
@@ -127,6 +124,10 @@ public class EuroActivity extends AppCompatActivity {
         startActivity(new Intent(this, MainActivity.class));
     }
 
+    public void irConversor(View v){
+        startActivity(new Intent(this, Conversor.class));
+    }
+
     public void googleAds() {
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
@@ -139,50 +140,6 @@ public class EuroActivity extends AppCompatActivity {
         adView = findViewById(R.id.adView);
         adView.loadAd(adRequest);
 
-    }
-
-    @SuppressLint("UseCompatLoadingForDrawables")
-    public void inverterSeta(View v) {
-        if (img_inverterConversor.getDrawable().getConstantState().equals(img_inverterConversor.getContext()
-                .getDrawable(R.drawable.ic_arrow).getConstantState())) {
-            img_inverterConversor.setImageResource(R.drawable.ic_arrow_left);
-            et_conversor1.setEnabled(false);
-            et_conversor2.setEnabled(true);
-            et_conversor2.requestFocus();
-        } else {
-            img_inverterConversor.setImageResource(R.drawable.ic_arrow);
-            et_conversor2.setEnabled(false);
-            et_conversor1.setEnabled(true);
-            et_conversor1.requestFocus();
-        }
-
-        et_conversor1.setText("");
-        et_conversor2.setText("");
-    }
-
-    @SuppressLint("UseCompatLoadingForDrawables")
-    public void converter(View v) {
-
-        try {
-            if (img_inverterConversor.getDrawable().getConstantState().equals(img_inverterConversor.getContext()
-                    .getDrawable(R.drawable.ic_arrow).getConstantState())) {
-                String sValorEuro = String.valueOf(tv_ask.getText());
-                double dValorEuro = Double.parseDouble(sValorEuro);
-                String sValorReal = String.valueOf(et_conversor1.getText());
-                double dValorReal = Double.parseDouble(sValorReal);
-                double total = dValorReal / dValorEuro;
-                et_conversor2.setText(String.format("%.2f", total).replace(".", ","));
-            } else {
-                String sValorEuro = String.valueOf(tv_ask.getText());
-                double dValorEuro = Double.parseDouble(sValorEuro);
-                String sValorDigitado = String.valueOf(et_conversor2.getText());
-                double dValorDigitado = Double.parseDouble(sValorDigitado);
-                double total = dValorDigitado * dValorEuro;
-                et_conversor1.setText(String.format("%.2f", total).replace(".", ","));
-            }
-        } catch (Exception e) {
-            Toast.makeText(this, "Erro: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
     }
 
 }

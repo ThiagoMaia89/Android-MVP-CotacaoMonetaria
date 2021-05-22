@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,308 +10,373 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:src="@drawable/money_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/border"
         android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:onClick="irDolar"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.25">
+        app:layout_constraintTop_toBottomOf="@id/imageView2">
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
+        <TextView
+            android:id="@+id/tv_dolar"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/et_dolar"
+            android:text="Dólar\nComercial"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/et_dolar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/et_dolar"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:autofillHints="Valor Dólar"
             android:background="@drawable/border"
-            android:onClick="irDolar"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:ems="10"
+            android:enabled="false"
+            android:inputType="numberDecimal"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/pct_dolar"
+            app:layout_constraintStart_toEndOf="@id/tv_dolar"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tv_teste"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:labelFor="@id/et_dolar"
-                android:text="Dólar\nComercial"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/et_dolar"
-                android:layout_width="130dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="10dp"
-                android:autofillHints="Valor Dólar"
-                android:background="@drawable/border"
-                android:ems="10"
-                android:enabled="false"
-                android:inputType="numberDecimal"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/pct_dolar"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:gravity="end"
-                android:text="pct"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-
-            <ImageView
-                android:id="@+id/dolar_arrow"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/ic_arrowdown" />
-
-
-            <ImageView
-                android:id="@+id/icon_irDolar"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="10dp"
-                android:contentDescription="@string/visualizar_tudo"
-                android:src="@drawable/ic_arrowright" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginTop="10dp"
-            android:onClick="irDolarTurismo"
-            android:background="@drawable/border"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:labelFor="@id/et_dolar"
-                android:text="Dólar\nTurismo"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/et_dolarTurismo"
-                android:layout_width="130dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="10dp"
-                android:autofillHints="Valor Dólar"
-                android:background="@drawable/border"
-                android:ems="10"
-                android:enabled="false"
-                android:inputType="numberDecimal"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/pct_dolarTurismo"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:gravity="end"
-                android:text="pct"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-
-            <ImageView
-                android:id="@+id/dolarTurismo_arrow"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/ic_arrowdown" />
-
-
-            <ImageView
-                android:id="@+id/icon_irDolarTurismo"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="10dp"
-                android:contentDescription="@string/visualizar_tudo"
-                android:src="@drawable/ic_arrowright" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginTop="10dp"
-            android:onClick="irEuro"
-            android:background="@drawable/border"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:labelFor="@+id/et_euro"
-                android:text="@string/euro"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/et_euro"
-                android:layout_width="130dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="10dp"
-                android:autofillHints="Valor Euro"
-                android:background="@drawable/border"
-                android:ems="10"
-                android:enabled="false"
-                android:inputType="numberDecimal"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/pct_euro"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:gravity="end"
-                android:text="pct"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-
-            <ImageView
-                android:id="@+id/euro_arrow"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/ic_arrowdown" />
-
-            <ImageView
-                android:id="@+id/icon_irEuro"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="10dp"
-                android:contentDescription="@string/visualizar_tudo"
-
-                android:src="@drawable/ic_arrowright" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/border"
-            android:onClick="irBtc"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:labelFor="@+id/et_euro"
-                android:text="BitCoin"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/et_btc"
-                android:layout_width="130dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="10dp"
-                android:autofillHints="Valor Euro"
-                android:background="@drawable/border"
-                android:ems="10"
-                android:enabled="false"
-                android:inputType="numberDecimal"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/pct_BitCoin"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:gravity="end"
-                android:text="pct"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-
-            <ImageView
-                android:id="@+id/bitCoin_arrow"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/ic_arrowdown" />
-
-            <ImageView
-                android:id="@+id/icon_irBtc"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="10dp"
-                android:contentDescription="@string/visualizar_tudo"
-                android:src="@drawable/ic_arrowright" />
-
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/pct_dolar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="10dp">
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:gravity="end"
+            android:text="pct"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/dolar_arrow"
+            app:layout_constraintStart_toEndOf="@id/et_dolar"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Última atualização: "
-                android:textColor="@color/white" />
+        <ImageView
+            android:id="@+id/dolar_arrow"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_arrowdown"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/icon_irDolar"
+            app:layout_constraintStart_toEndOf="@id/pct_dolar"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tv_data"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:labelFor="@+id/et_euro"
-                android:text="Data"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
+        <ImageView
+            android:id="@+id/icon_irDolar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/visualizar_tudo"
+            android:src="@drawable/ic_arrowright"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/dolar_arrow"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:backgroundTint="#368BA5"
-        android:contentDescription="@string/home"
-        android:onClick="HOME"
-        android:src="@drawable/ic_home"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/border"
+        android:gravity="center"
+        android:onClick="irDolarTurismo"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:maxImageSize="35dp" />
+        app:layout_constraintTop_toBottomOf="@id/linearLayout">
+
+        <TextView
+            android:id="@+id/tv_dolar_turismo"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/et_dolar"
+            android:text="Dólar\nTurismo"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/et_dolarTurismo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/et_dolarTurismo"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:autofillHints="Valor Dólar"
+            android:background="@drawable/border"
+            android:ems="10"
+            android:enabled="false"
+            android:inputType="numberDecimal"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/pct_dolarTurismo"
+            app:layout_constraintStart_toEndOf="@id/tv_dolar_turismo"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/pct_dolarTurismo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:gravity="end"
+            android:text="pct"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/dolarTurismo_arrow"
+            app:layout_constraintStart_toEndOf="@id/et_dolarTurismo"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/dolarTurismo_arrow"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_arrowdown"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/icon_irDolarTurismo"
+            app:layout_constraintStart_toEndOf="@id/pct_dolarTurismo"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/icon_irDolarTurismo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/visualizar_tudo"
+            android:src="@drawable/ic_arrowright"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/dolarTurismo_arrow"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/border"
+        android:gravity="center"
+        android:onClick="irEuro"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout2">
+
+        <TextView
+            android:id="@+id/tv_euro"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:labelFor="@+id/et_euro"
+            android:text="@string/euro"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/et_euro"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/et_euro"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:autofillHints="Valor Euro"
+            android:background="@drawable/border"
+            android:ems="10"
+            android:enabled="false"
+            android:inputType="numberDecimal"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/pct_euro"
+            app:layout_constraintStart_toEndOf="@id/tv_euro"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/pct_euro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:gravity="end"
+            android:text="pct"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/euro_arrow"
+            app:layout_constraintStart_toEndOf="@id/et_euro"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/euro_arrow"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_arrowdown"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/icon_irEuro"
+            app:layout_constraintStart_toEndOf="@id/pct_euro"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/icon_irEuro"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/visualizar_tudo"
+            android:src="@drawable/ic_arrowright"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/euro_arrow"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/border"
+        android:gravity="center"
+        android:onClick="irBtc"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout3">
+
+        <TextView
+            android:id="@+id/tv_bitcoin"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:labelFor="@+id/et_euro"
+            android:text="BitCoin"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/et_btc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <EditText
+            android:id="@+id/et_btc"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:autofillHints="Valor Euro"
+            android:background="@drawable/border"
+            android:ems="10"
+            android:enabled="false"
+            android:inputType="numberDecimal"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/pct_BitCoin"
+            app:layout_constraintStart_toEndOf="@id/tv_bitcoin"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/pct_BitCoin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:gravity="end"
+            android:text="pct"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/bitCoin_arrow"
+            app:layout_constraintStart_toEndOf="@id/et_btc"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/bitCoin_arrow"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_arrowdown"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/icon_irBtc"
+            app:layout_constraintStart_toEndOf="@id/pct_BitCoin"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+            android:id="@+id/icon_irBtc"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/visualizar_tudo"
+            android:src="@drawable/ic_arrowright"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/bitCoin_arrow"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <TextView
+        android:id="@+id/tv_ultima_atualizacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Última atualização: "
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout4" />
+
+    <TextView
+        android:id="@+id/tv_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:labelFor="@+id/et_euro"
+        android:text="Data"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_ultima_atualizacao" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,41 +1,29 @@
 package com.simplesoftware.cotacao_dolar_e_euro.activitys;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.simplesoftware.cotacao_dolar_e_euro.R;
-import com.simplesoftware.cotacao_dolar_e_euro.classes.BitCoin;
-import com.simplesoftware.cotacao_dolar_e_euro.classes.Dolar;
-import com.simplesoftware.cotacao_dolar_e_euro.classes.DolarTurismo;
-import com.simplesoftware.cotacao_dolar_e_euro.classes.Euro;
-import com.simplesoftware.cotacao_dolar_e_euro.classes.Moedas;
+import com.simplesoftware.cotacao_dolar_e_euro.requests.BitCoin;
+import com.simplesoftware.cotacao_dolar_e_euro.requests.Dolar;
+import com.simplesoftware.cotacao_dolar_e_euro.requests.DolarTurismo;
+import com.simplesoftware.cotacao_dolar_e_euro.requests.Euro;
 import com.simplesoftware.cotacao_dolar_e_euro.util.RetrofitConfig;
 
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -220,10 +208,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void irBtc(View view) {
         startActivity(new Intent(this, BitCoinActivity.class));
-    }
-
-    public void HOME(View v) {
-        startActivity(new Intent(this, MainActivity.class));
     }
 
 

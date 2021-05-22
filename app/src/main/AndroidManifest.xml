@@ -10,7 +10,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Cotacao_Dolar_e_Euro">
+        android:theme="@style/Theme.Cotacao_Dolar_e_Euro"
+        android:windowSoftInputMode="adjustPan">
+        <activity android:name=".conversor.ConversorEuro"></activity>
+        <activity
+            android:name=".conversor.ConversorDolarTurismo"
+            android:screenOrientation="portrait"
+            android:theme="@style/Conversor" />
+        <activity
+            android:name=".conversor.Conversor"
+            android:screenOrientation="portrait"
+            android:theme="@style/Conversor" />
         <activity android:name=".activitys.BitCoinActivity" />
         <activity android:name=".activitys.DolarTurismoActivity" />
         <activity android:name=".activitys.EuroActivity" />

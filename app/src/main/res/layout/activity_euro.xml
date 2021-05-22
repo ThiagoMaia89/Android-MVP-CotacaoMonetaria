@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_titulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Euro"
@@ -39,12 +39,13 @@
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/tv_titulo">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Última atualização: "
+            android:textSize="12sp"
             android:textColor="@color/white" />
 
         <TextView
@@ -54,7 +55,7 @@
             android:labelFor="@+id/et_euro"
             android:text="Data"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="12sp" />
 
     </LinearLayout>
 
@@ -250,130 +251,6 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout6"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@drawable/border"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
-
-
-        <LinearLayout
-            android:id="@+id/ll_flags"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:elevation="50dp"
-            android:gravity="center"
-            android:onClick="inverterSeta"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/brasil_flag" />
-
-            <ImageView
-                android:id="@+id/img_inverterConversor"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginHorizontal="5dp"
-                android:src="@drawable/ic_arrow" />
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/uniao_europeia_flag" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:text="R$"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/et_conversor1"
-                android:layout_width="120dp"
-                android:layout_height="30dp"
-                android:background="@drawable/border"
-                android:backgroundTint="@color/white"
-                android:gravity="center"
-                android:hint="0,00"
-                android:inputType="numberDecimal"
-                android:textColor="@color/teal_700"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:text="="
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/et_conversor2"
-                android:layout_width="120dp"
-                android:layout_height="30dp"
-                android:background="@drawable/border"
-                android:backgroundTint="@color/white"
-                android:gravity="center"
-                android:hint="0,00"
-                android:inputType="numberDecimal"
-                android:textColor="@color/teal_700"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="EUR"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_converter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="#368BA5"
-            android:onClick="converter"
-            android:text="Converter"
-            android:textAllCaps="false" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:text="*Clique na seta para inverter a conversão"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
-
-    </LinearLayout>
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
@@ -388,7 +265,7 @@
     </com.google.android.gms.ads.AdView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton2"
+        android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -397,8 +274,23 @@
         android:onClick="HOME"
         android:src="@drawable/ic_home"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/floatingConversor"
         app:layout_constraintStart_toStartOf="parent"
         app:maxImageSize="35dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingConversor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="#368BA5"
+        android:contentDescription="@string/converter"
+        android:onClick="irConversor"
+        android:src="@drawable/conversor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/floatingActionButton"
+        app:maxImageSize="35dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
