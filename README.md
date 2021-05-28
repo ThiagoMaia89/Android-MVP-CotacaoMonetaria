@@ -1,5 +1,4 @@
-# Aplicativo de Cotação Monetária utilizando API REST
+# Cotação Monetária
 
-## Fique por dentro dos preços das principais moedas, em reais, bem como variações, bid, ask etc.
-
-### Atualização automatica a cada 30 segundos.
+##### Utilização da biblioteca Retrofit para consumir uma API pública de cotação monetária.
+##### Os dados são tratados e disponibilizados para o usuário em tempo real.
