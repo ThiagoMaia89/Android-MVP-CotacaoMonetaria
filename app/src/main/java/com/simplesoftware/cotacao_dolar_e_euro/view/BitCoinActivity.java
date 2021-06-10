@@ -1,4 +1,4 @@
-package com.simplesoftware.cotacao_dolar_e_euro.activitys;
+package com.simplesoftware.cotacao_dolar_e_euro.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,8 +20,8 @@ import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.simplesoftware.cotacao_dolar_e_euro.R;
 import com.simplesoftware.cotacao_dolar_e_euro.conversor.Conversor;
-import com.simplesoftware.cotacao_dolar_e_euro.requests.DolarTurismo;
-import com.simplesoftware.cotacao_dolar_e_euro.util.RetrofitConfig;
+import com.simplesoftware.cotacao_dolar_e_euro.model.requests.BitCoin;
+import com.simplesoftware.cotacao_dolar_e_euro.model.util.RetrofitConfig;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -32,7 +32,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DolarTurismoActivity extends AppCompatActivity {
+public class BitCoinActivity extends AppCompatActivity {
 
     private TextView tv_high, tv_low, tv_varBid, tv_pctChange, tv_bid, tv_ask, tv_data, tv_titulo;
     private String copiarCotacao;
@@ -43,7 +43,7 @@ public class DolarTurismoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dolar_turismo);
+        setContentView(R.layout.activity_bit_coin);
 
         instanciarComponentes();
         buscarInfo();
@@ -58,7 +58,6 @@ public class DolarTurismoActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             dataAtual = LocalDate.now();
         }
-
     }
 
     public void instanciarComponentes() {
@@ -73,22 +72,22 @@ public class DolarTurismoActivity extends AppCompatActivity {
     }
 
     public void buscarInfo() {
-        Call<DolarTurismo> dolarTurismoCall = new RetrofitConfig().getServiceConfig().buscarDolarTurismo();
-        dolarTurismoCall.enqueue(new Callback<DolarTurismo>() {
+        Call<BitCoin> bitCoinCall = new RetrofitConfig().getServiceConfig().buscarBitCoin();
+        bitCoinCall.enqueue(new Callback<BitCoin>() {
             @Override
-            public void onResponse(Call<DolarTurismo> call, Response<DolarTurismo> response) {
+            public void onResponse(Call<BitCoin> call, Response<BitCoin> response) {
                 if (!response.isSuccessful()) {
-                    Toast.makeText(DolarTurismoActivity.this, "Erro: " + response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BitCoinActivity.this, "Erro: " + response.code(), Toast.LENGTH_SHORT).show();
                 } else {
-                    DolarTurismo dolarTurismo = response.body();
-                    tv_high.setText(dolarTurismo.USDT.getHigh());
-                    tv_low.setText(dolarTurismo.USDT.getLow());
-                    tv_varBid.setText(dolarTurismo.USDT.getVarBid());
-                    tv_pctChange.setText(dolarTurismo.USDT.getPctChange());
-                    tv_bid.setText(dolarTurismo.USDT.getBid());
-                    tv_ask.setText(dolarTurismo.USDT.getAsk());
+                    BitCoin bitCoin = response.body();
+                    tv_high.setText(bitCoin.BTC.getHigh());
+                    tv_low.setText(bitCoin.BTC.getLow());
+                    tv_varBid.setText(bitCoin.BTC.getVarBid());
+                    tv_pctChange.setText(bitCoin.BTC.getPctChange());
+                    tv_bid.setText(bitCoin.BTC.getBid());
+                    tv_ask.setText(bitCoin.BTC.getAsk());
 
-                    copiarCotacao = dolarTurismo.USDT.toString();
+                    copiarCotacao = bitCoin.BTC.toString();
 
                     SharedPreferences spGetString = getSharedPreferences("getString", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = spGetString.edit();
@@ -100,20 +99,20 @@ public class DolarTurismoActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<DolarTurismo> call, Throwable t) {
-                Toast.makeText(DolarTurismoActivity.this, "Erro: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<BitCoin> call, Throwable t) {
+                Toast.makeText(BitCoinActivity.this, "Erro: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    public void copiarCotacao(View view) {
+    public void copiarCotacao(View v) {
         try {
-            Toast.makeText(DolarTurismoActivity.this, "Cotação copiada para a Área de Transferência", Toast.LENGTH_SHORT).show();
+            Toast.makeText(BitCoinActivity.this, "Cotação copiada para a Área de Transferência", Toast.LENGTH_SHORT).show();
 
             ClipboardManager clipboard = (ClipboardManager)
                     getSystemService(Context.CLIPBOARD_SERVICE);
 
-            ClipData cpy_all = ClipData.newPlainText("text", "Dólar Turismo:\n" + dataAtual + "\n\n" + copiarCotacao);
+            ClipData cpy_all = ClipData.newPlainText("text", "BitCoin:\n" + dataAtual + "\n\n" + copiarCotacao);
             clipboard.setPrimaryClip(cpy_all);
         } catch (Exception e) {
             Toast.makeText(this, "Tente novamente" + e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -135,11 +134,9 @@ public class DolarTurismoActivity extends AppCompatActivity {
             public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
         });
-
         adRequest = new AdRequest.Builder().build();
         adView = findViewById(R.id.adView);
         adView.loadAd(adRequest);
-
     }
 
 }

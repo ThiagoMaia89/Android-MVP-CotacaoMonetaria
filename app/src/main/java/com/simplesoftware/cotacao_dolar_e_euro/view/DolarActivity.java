@@ -1,20 +1,6 @@
-package com.simplesoftware.cotacao_dolar_e_euro.activitys;
+package com.simplesoftware.cotacao_dolar_e_euro.view;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Build;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -23,8 +9,20 @@ import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.simplesoftware.cotacao_dolar_e_euro.R;
 import com.simplesoftware.cotacao_dolar_e_euro.conversor.Conversor;
-import com.simplesoftware.cotacao_dolar_e_euro.requests.BitCoin;
-import com.simplesoftware.cotacao_dolar_e_euro.util.RetrofitConfig;
+import com.simplesoftware.cotacao_dolar_e_euro.model.requests.Dolar;
+import com.simplesoftware.cotacao_dolar_e_euro.model.util.RetrofitConfig;
+
+
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -35,7 +33,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BitCoinActivity extends AppCompatActivity {
+public class DolarActivity extends AppCompatActivity {
 
     private TextView tv_high, tv_low, tv_varBid, tv_pctChange, tv_bid, tv_ask, tv_data, tv_titulo;
     private String copiarCotacao;
@@ -43,10 +41,11 @@ public class BitCoinActivity extends AppCompatActivity {
     private AdView adView;
     private AdRequest adRequest;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bit_coin);
+        setContentView(R.layout.activity_dolar);
 
         instanciarComponentes();
         buscarInfo();
@@ -61,6 +60,7 @@ public class BitCoinActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             dataAtual = LocalDate.now();
         }
+
     }
 
     public void instanciarComponentes() {
@@ -75,22 +75,23 @@ public class BitCoinActivity extends AppCompatActivity {
     }
 
     public void buscarInfo() {
-        Call<BitCoin> bitCoinCall = new RetrofitConfig().getServiceConfig().buscarBitCoin();
-        bitCoinCall.enqueue(new Callback<BitCoin>() {
+        Call<Dolar> callDolar = new RetrofitConfig().getServiceConfig().buscarDolar();
+        callDolar.enqueue(new Callback<Dolar>() {
             @Override
-            public void onResponse(Call<BitCoin> call, Response<BitCoin> response) {
+            public void onResponse(Call<Dolar> call, Response<Dolar> response) {
                 if (!response.isSuccessful()) {
-                    Toast.makeText(BitCoinActivity.this, "Erro: " + response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DolarActivity.this, "Erro: " + response.code(), Toast.LENGTH_SHORT).show();
                 } else {
-                    BitCoin bitCoin = response.body();
-                    tv_high.setText(bitCoin.BTC.getHigh());
-                    tv_low.setText(bitCoin.BTC.getLow());
-                    tv_varBid.setText(bitCoin.BTC.getVarBid());
-                    tv_pctChange.setText(bitCoin.BTC.getPctChange());
-                    tv_bid.setText(bitCoin.BTC.getBid());
-                    tv_ask.setText(bitCoin.BTC.getAsk());
+                    Dolar dolar = response.body();
+                    tv_high.setText(dolar.USD.getHigh());
+                    tv_low.setText(dolar.USD.getLow());
+                    tv_varBid.setText(dolar.USD.getVarBid());
+                    tv_pctChange.setText(dolar.USD.getPctChange());
+                    tv_bid.setText(dolar.USD.getBid());
+                    tv_ask.setText(dolar.USD.getAsk());
 
-                    copiarCotacao = bitCoin.BTC.toString();
+
+                    copiarCotacao = dolar.USD.toString();
 
                     SharedPreferences spGetString = getSharedPreferences("getString", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = spGetString.edit();
@@ -102,32 +103,28 @@ public class BitCoinActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<BitCoin> call, Throwable t) {
-                Toast.makeText(BitCoinActivity.this, "Erro: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<Dolar> call, Throwable t) {
+                Toast.makeText(DolarActivity.this, "Erro: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     public void copiarCotacao(View v) {
         try {
-            Toast.makeText(BitCoinActivity.this, "Cotação copiada para a Área de Transferência", Toast.LENGTH_SHORT).show();
+            Toast.makeText(DolarActivity.this, "Cotação copiada para a Área de Transferência", Toast.LENGTH_SHORT).show();
 
             ClipboardManager clipboard = (ClipboardManager)
                     getSystemService(Context.CLIPBOARD_SERVICE);
 
-            ClipData cpy_all = ClipData.newPlainText("text", "BitCoin:\n" + dataAtual + "\n\n" + copiarCotacao);
+            ClipData cpy_all = ClipData.newPlainText("text", "Dólar Comercial:\n" + dataAtual + "\n\n" + copiarCotacao);
             clipboard.setPrimaryClip(cpy_all);
         } catch (Exception e) {
             Toast.makeText(this, "Tente novamente" + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void HOME(View view) {
+    public void HOME(View v) {
         startActivity(new Intent(this, MainActivity.class));
-    }
-
-    public void irConversor(View v){
-        startActivity(new Intent(this, Conversor.class));
     }
 
     public void googleAds() {
@@ -137,9 +134,16 @@ public class BitCoinActivity extends AppCompatActivity {
             public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
         });
+
         adRequest = new AdRequest.Builder().build();
         adView = findViewById(R.id.adView);
         adView.loadAd(adRequest);
+
     }
+
+    public void irConversor(View v){
+        startActivity(new Intent(this, Conversor.class));
+    }
+
 
 }

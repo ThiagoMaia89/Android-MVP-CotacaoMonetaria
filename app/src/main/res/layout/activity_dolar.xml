@@ -8,7 +8,7 @@
     android:background="@drawable/app_background"
     android:paddingTop="20dp"
     android:paddingHorizontal="20dp"
-    tools:context=".activitys.DolarActivity">
+    tools:context=".view.DolarActivity">
 
     <ImageView
         android:id="@+id/imageView"

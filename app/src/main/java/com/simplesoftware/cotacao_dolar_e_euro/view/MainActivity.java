@@ -1,4 +1,4 @@
-package com.simplesoftware.cotacao_dolar_e_euro.activitys;
+package com.simplesoftware.cotacao_dolar_e_euro.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,11 +11,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.simplesoftware.cotacao_dolar_e_euro.R;
-import com.simplesoftware.cotacao_dolar_e_euro.requests.BitCoin;
-import com.simplesoftware.cotacao_dolar_e_euro.requests.Dolar;
-import com.simplesoftware.cotacao_dolar_e_euro.requests.DolarTurismo;
-import com.simplesoftware.cotacao_dolar_e_euro.requests.Euro;
-import com.simplesoftware.cotacao_dolar_e_euro.util.RetrofitConfig;
+import com.simplesoftware.cotacao_dolar_e_euro.model.requests.BitCoin;
+import com.simplesoftware.cotacao_dolar_e_euro.model.requests.Dolar;
+import com.simplesoftware.cotacao_dolar_e_euro.model.requests.DolarTurismo;
+import com.simplesoftware.cotacao_dolar_e_euro.model.requests.Euro;
+import com.simplesoftware.cotacao_dolar_e_euro.model.util.RetrofitConfig;
+import com.simplesoftware.cotacao_dolar_e_euro.presenter.MainActivityContract;
+import com.simplesoftware.cotacao_dolar_e_euro.presenter.MainActivityPresenter;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,7 +27,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainActivityContract.MvpView {
+
+    MainActivityPresenter mPresenter;
 
     private EditText et_dolar, et_euro, et_dolarTurismo, et_btc;
     private TextView tv_data, pct_dolar, pct_dolarTurismo, pct_euro, pct_BitCoin;
@@ -51,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void instanciarComponentes() {
+
+        mPresenter = new MainActivityPresenter(this);
+
         et_dolar = findViewById(R.id.et_dolar);
         et_euro = findViewById(R.id.et_euro);
         tv_data = findViewById(R.id.tv_data);
@@ -67,12 +74,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void buscarInfoDolar() {
+
         Call<Dolar> callDolar = new RetrofitConfig().getServiceConfig().buscarDolar();
         callDolar.enqueue(new Callback<Dolar>() {
             @Override
             public void onResponse(Call<Dolar> call, Response<Dolar> response) {
                 if (!response.isSuccessful()) {
-                    Toast.makeText(MainActivity.this, "Em manutenção: Tente novamente em breve." + response.code(), Toast.LENGTH_SHORT).show();
+                    onFailureMessage(response.message());
                 } else {
                     Dolar dolar = response.body();
                     double dValorDolar = Double.parseDouble(dolar.USD.getAsk());
@@ -93,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Dolar> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Em manutenção: Tente novamente em breve." + t.getMessage(), Toast.LENGTH_SHORT).show();
+                onFailureMessage(t.getMessage());
             }
         });
     }
@@ -104,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<DolarTurismo> call, Response<DolarTurismo> response) {
                 if (!response.isSuccessful()) {
-                    Toast.makeText(MainActivity.this, "Em manutenção: Tente novamente em breve." + response.code(), Toast.LENGTH_SHORT).show();
+                    onFailureMessage(response.message());
                 } else {
                     DolarTurismo dolarTurismo = response.body();
                     double dValorDolarTurismo = Double.parseDouble(dolarTurismo.USDT.getAsk());
@@ -125,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<DolarTurismo> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Em manutenção: Tente novamente em breve." + t.getMessage(), Toast.LENGTH_SHORT).show();
+                onFailureMessage(t.getMessage());
             }
         });
     }
@@ -136,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Euro> call, Response<Euro> response) {
                 if (!response.isSuccessful()) {
-                    Toast.makeText(MainActivity.this, "Em manutenção: Tente novamente em breve." + response.code(), Toast.LENGTH_SHORT).show();
+                    onFailureMessage(response.message());
                 } else {
                     Euro euro = response.body();
                     double dValorEuro = Double.parseDouble(euro.EUR.getAsk());
@@ -157,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Euro> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Em manutenção: Tente novamente em breve." + t.getMessage(), Toast.LENGTH_SHORT).show();
+                onFailureMessage(t.getMessage());
             }
         });
     }
@@ -168,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<BitCoin> call, Response<BitCoin> response) {
                 if (!response.isSuccessful()) {
-                    Toast.makeText(MainActivity.this, "Em manutenção: Tente novamente em breve." + response.code(), Toast.LENGTH_SHORT).show();
+                    onFailureMessage(response.message());
                 } else {
                     BitCoin bitCoin = response.body();
                     double dValorBitCoin = Double.parseDouble(bitCoin.BTC.getAsk());
@@ -189,26 +197,33 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<BitCoin> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Em manutenção: Tente novamente em breve." + t.getMessage(), Toast.LENGTH_SHORT).show();
+                onFailureMessage(t.getMessage());
             }
         });
     }
 
-    public void irDolar(View v) {
+    @Override
+    public void irDolar(View view) {
         startActivity(new Intent(this, DolarActivity.class));
     }
 
+    @Override
     public void irDolarTurismo(View view) {
         startActivity(new Intent(this, DolarTurismoActivity.class));
     }
 
+    @Override
     public void irEuro(View view) {
         startActivity(new Intent(this, EuroActivity.class));
     }
 
+    @Override
     public void irBtc(View view) {
         startActivity(new Intent(this, BitCoinActivity.class));
     }
 
-
+    @Override
+    public void onFailureMessage(String message) {
+        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+    }
 }

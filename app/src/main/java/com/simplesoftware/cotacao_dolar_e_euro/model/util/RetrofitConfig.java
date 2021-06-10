@@ -1,4 +1,4 @@
-package com.simplesoftware.cotacao_dolar_e_euro.util;
+package com.simplesoftware.cotacao_dolar_e_euro.model.util;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

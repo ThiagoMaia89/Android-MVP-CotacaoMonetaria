@@ -12,25 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cotacao_Dolar_e_Euro"
         android:windowSoftInputMode="adjustPan">
-        <activity android:name=".conversor.ConversorEuro"></activity>
-        <activity
-            android:name=".conversor.ConversorDolarTurismo"
-            android:screenOrientation="portrait"
-            android:theme="@style/Conversor" />
         <activity
             android:name=".conversor.Conversor"
             android:screenOrientation="portrait"
             android:theme="@style/Conversor" />
-        <activity android:name=".activitys.BitCoinActivity" />
-        <activity android:name=".activitys.DolarTurismoActivity" />
-        <activity android:name=".activitys.EuroActivity" />
-        <activity android:name=".activitys.DolarActivity" />
+        <activity android:name=".view.BitCoinActivity" />
+        <activity android:name=".view.DolarTurismoActivity" />
+        <activity android:name=".view.EuroActivity" />
+        <activity android:name=".view.DolarActivity" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-9823376642365552~6439747620" />
 
-        <activity android:name=".activitys.MainActivity">
+        <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
