@@ -15,28 +15,38 @@
         android:src="@drawable/money_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_hint"/>
 
+    <TextView
+        android:id="@+id/tv_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/text_hint"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/imageView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/layout_dolar"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/layout_dolar"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:layout_marginTop="16dp"
         android:background="@drawable/border"
         android:gravity="center"
-        android:onClick="irDolar"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView2">
+        app:layout_constraintTop_toBottomOf="@id/tv_hint">
 
         <TextView
             android:id="@+id/tv_dolar"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:labelFor="@id/et_dolar"
-            android:text="Dólar\nComercial"
+            android:text="@string/dolarcomercial"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="14sp"
@@ -70,7 +80,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="8dp"
             android:gravity="end"
-            android:text="pct"
+            android:text="@string/pct"
             android:textColor="@color/white"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -103,24 +113,23 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/layout_dolar_turismo"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/border"
         android:gravity="center"
-        android:onClick="irDolarTurismo"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout">
+        app:layout_constraintTop_toBottomOf="@id/layout_dolar">
 
         <TextView
             android:id="@+id/tv_dolar_turismo"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:labelFor="@id/et_dolar"
-            android:text="Dólar\nTurismo"
+            android:text="@string/dolarturismo"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="14sp"
@@ -154,7 +163,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="8dp"
             android:gravity="end"
-            android:text="pct"
+            android:text="@string/pct"
             android:textColor="@color/white"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -187,17 +196,16 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/linearLayout3"
+        android:id="@+id/layout_euro"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/border"
         android:gravity="center"
-        android:onClick="irEuro"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout2">
+        app:layout_constraintTop_toBottomOf="@id/layout_dolar_turismo">
 
         <TextView
             android:id="@+id/tv_euro"
@@ -238,7 +246,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="8dp"
             android:gravity="end"
-            android:text="pct"
+            android:text="@string/pct"
             android:textColor="@color/white"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -271,24 +279,23 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/linearLayout4"
+        android:id="@+id/layout_bitcoin"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/border"
         android:gravity="center"
-        android:onClick="irBtc"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout3">
+        app:layout_constraintTop_toBottomOf="@id/layout_euro">
 
         <TextView
             android:id="@+id/tv_bitcoin"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:labelFor="@+id/et_euro"
-            android:text="BitCoin"
+            android:text="@string/bitcoin"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="14sp"
@@ -364,7 +371,7 @@
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout4" />
+        app:layout_constraintTop_toBottomOf="@id/layout_bitcoin" />
 
     <TextView
         android:id="@+id/tv_data"

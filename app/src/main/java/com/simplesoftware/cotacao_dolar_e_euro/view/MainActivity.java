@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.simplesoftware.cotacao_dolar_e_euro.R;
 import com.simplesoftware.cotacao_dolar_e_euro.model.requests.BitCoin;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
     private EditText et_dolar, et_euro, et_dolarTurismo, et_btc;
     private TextView tv_data, pct_dolar, pct_dolarTurismo, pct_euro, pct_BitCoin;
+    private ConstraintLayout layoutDolar, layoutDolarTurismo, layoutEuro, layoutBitCoin;
     private ImageView dolar_arrow, dolarTurismo_arrow, euro_arrow, bitCoin_arrow;
 
     @Override
@@ -41,16 +43,9 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         setContentView(R.layout.activity_main);
 
         instanciarComponentes();
-        buscarInfoDolar();
-        buscarInfoDolarTurismo();
-        buscarInfoEuro();
-        buscarInfoBitCoin();
-
-        Date data = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());
-        String dataFormatada = sdf.format(data);
-
-        tv_data.setText(dataFormatada);
+        calls();
+        handleData();
+        handleClicks();
 
     }
 
@@ -71,159 +66,38 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         dolarTurismo_arrow = findViewById(R.id.dolarTurismo_arrow);
         euro_arrow = findViewById(R.id.euro_arrow);
         bitCoin_arrow = findViewById(R.id.bitCoin_arrow);
+        layoutDolar = findViewById(R.id.layout_dolar);
+        layoutDolarTurismo = findViewById(R.id.layout_dolar_turismo);
+        layoutEuro = findViewById(R.id.layout_euro);
+        layoutBitCoin = findViewById(R.id.layout_bitcoin);
     }
 
-    public void buscarInfoDolar() {
-
-        Call<Dolar> callDolar = new RetrofitConfig().getServiceConfig().buscarDolar();
-        callDolar.enqueue(new Callback<Dolar>() {
-            @Override
-            public void onResponse(Call<Dolar> call, Response<Dolar> response) {
-                if (!response.isSuccessful()) {
-                    onFailureMessage(response.message());
-                } else {
-                    Dolar dolar = response.body();
-                    double dValorDolar = Double.parseDouble(dolar.USD.getAsk());
-                    String sValorDolar = String.format("%.2f", dValorDolar).replace(".", ",");
-                    et_dolar.setText("R$ " + sValorDolar);
-
-                    String pctDolar = dolar.USD.getPctChange();
-                    pct_dolar.setText(pctDolar + "%");
-                    if (Double.parseDouble(pctDolar) < 0.0) {
-                        dolar_arrow.setImageResource(R.drawable.ic_arrowdown);
-                    } else if (Double.parseDouble(pctDolar) == 0.0) {
-                        dolar_arrow.setVisibility(View.INVISIBLE);
-                    } else {
-                        dolar_arrow.setImageResource(R.drawable.ic_arrowup);
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Dolar> call, Throwable t) {
-                onFailureMessage(t.getMessage());
-            }
-        });
-    }
-
-    public void buscarInfoDolarTurismo() {
-        Call<DolarTurismo> dolarTurismoCall = new RetrofitConfig().getServiceConfig().buscarDolarTurismo();
-        dolarTurismoCall.enqueue(new Callback<DolarTurismo>() {
-            @Override
-            public void onResponse(Call<DolarTurismo> call, Response<DolarTurismo> response) {
-                if (!response.isSuccessful()) {
-                    onFailureMessage(response.message());
-                } else {
-                    DolarTurismo dolarTurismo = response.body();
-                    double dValorDolarTurismo = Double.parseDouble(dolarTurismo.USDT.getAsk());
-                    String sValorDolarTurismo = String.format("%.2f", dValorDolarTurismo).replace(".", ",");
-                    et_dolarTurismo.setText("R$ " + sValorDolarTurismo);
-
-                    String pctDolarTurismo = dolarTurismo.USDT.getPctChange();
-                    pct_dolarTurismo.setText(pctDolarTurismo + "%");
-                    if (Double.parseDouble(pctDolarTurismo) < 0.0) {
-                        dolarTurismo_arrow.setImageResource(R.drawable.ic_arrowdown);
-                    } else if (Double.parseDouble(pctDolarTurismo) == 0.0) {
-                        dolarTurismo_arrow.setVisibility(View.INVISIBLE);
-                    } else {
-                        dolarTurismo_arrow.setImageResource(R.drawable.ic_arrowup);
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<DolarTurismo> call, Throwable t) {
-                onFailureMessage(t.getMessage());
-            }
-        });
-    }
-
-    public void buscarInfoEuro() {
-        Call<Euro> callEuro = new RetrofitConfig().getServiceConfig().buscarEuro();
-        callEuro.enqueue(new Callback<Euro>() {
-            @Override
-            public void onResponse(Call<Euro> call, Response<Euro> response) {
-                if (!response.isSuccessful()) {
-                    onFailureMessage(response.message());
-                } else {
-                    Euro euro = response.body();
-                    double dValorEuro = Double.parseDouble(euro.EUR.getAsk());
-                    String sValorEuro = String.format("%.2f", dValorEuro).replace(".", ",");
-                    et_euro.setText("R$ " + sValorEuro);
-
-                    String pctEuro = euro.EUR.getPctChange();
-                    pct_euro.setText(pctEuro + "%");
-                    if (Double.parseDouble(pctEuro) < 0.0) {
-                        euro_arrow.setImageResource(R.drawable.ic_arrowdown);
-                    } else if (Double.parseDouble(pctEuro) == 0.0) {
-                        euro_arrow.setVisibility(View.INVISIBLE);
-                    } else {
-                        euro_arrow.setImageResource(R.drawable.ic_arrowup);
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Euro> call, Throwable t) {
-                onFailureMessage(t.getMessage());
-            }
-        });
-    }
-
-    public void buscarInfoBitCoin() {
-        Call<BitCoin> bitCoinCall = new RetrofitConfig().getServiceConfig().buscarBitCoin();
-        bitCoinCall.enqueue(new Callback<BitCoin>() {
-            @Override
-            public void onResponse(Call<BitCoin> call, Response<BitCoin> response) {
-                if (!response.isSuccessful()) {
-                    onFailureMessage(response.message());
-                } else {
-                    BitCoin bitCoin = response.body();
-                    double dValorBitCoin = Double.parseDouble(bitCoin.BTC.getAsk());
-                    String sValorBitCoin = String.format("%.2f", dValorBitCoin).replace(".", ",");
-                    et_btc.setText("R$ " + sValorBitCoin);
-
-                    String pctBtc = bitCoin.BTC.getPctChange();
-                    pct_BitCoin.setText(pctBtc + "%");
-                    if (Double.parseDouble(pctBtc) < 0.0) {
-                        bitCoin_arrow.setImageResource(R.drawable.ic_arrowdown);
-                    } else if (Double.parseDouble(pctBtc) == 0.0) {
-                        bitCoin_arrow.setVisibility(View.INVISIBLE);
-                    } else {
-                        bitCoin_arrow.setImageResource(R.drawable.ic_arrowup);
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<BitCoin> call, Throwable t) {
-                onFailureMessage(t.getMessage());
-            }
-        });
+    public void calls() {
+        mPresenter.handleDolarComercialCall(et_dolar, pct_dolar, dolar_arrow);
+        mPresenter.handleDolarTurismoCall(et_dolarTurismo, pct_dolarTurismo, dolarTurismo_arrow);
+        mPresenter.handleEuroCall(et_euro, pct_euro, euro_arrow);
+        mPresenter.handleBitCoinCall(et_btc, pct_BitCoin, bitCoin_arrow);
     }
 
     @Override
-    public void irDolar(View view) {
-        startActivity(new Intent(this, DolarActivity.class));
+    public void handleData() {
+        Date data = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());
+        String dataFormatada = sdf.format(data);
+        tv_data.setText(dataFormatada);
     }
 
     @Override
-    public void irDolarTurismo(View view) {
-        startActivity(new Intent(this, DolarTurismoActivity.class));
-    }
-
-    @Override
-    public void irEuro(View view) {
-        startActivity(new Intent(this, EuroActivity.class));
-    }
-
-    @Override
-    public void irBtc(View view) {
-        startActivity(new Intent(this, BitCoinActivity.class));
+    public void handleClicks() {
+        layoutDolar.setOnClickListener(v -> startActivity(new Intent(this, DolarActivity.class)));
+        layoutDolarTurismo.setOnClickListener(v -> startActivity(new Intent(this, DolarTurismoActivity.class)));
+        layoutEuro.setOnClickListener(v -> startActivity(new Intent(this, EuroActivity.class)));
+        layoutBitCoin.setOnClickListener(v -> startActivity(new Intent(this, BitCoinActivity.class)));
     }
 
     @Override
     public void onFailureMessage(String message) {
         Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
     }
+
 }

@@ -7,5 +7,10 @@
     <string name="home">Home</string>
     <string name="copiar_para_area_de_transferencia">Copiar para a área de transferência</string>
     <string name="converter">Converter</string>
+    <string name="dolarcomercial">Dólar\nComercial</string>
+    <string name="pct">pct</string>
+    <string name="dolarturismo">Dólar\nTurismo</string>
+    <string name="bitcoin">BitCoin</string>
+    <string name="text_hint">*Clique em um campo para exibir os detalhes</string>
 
 </resources>
