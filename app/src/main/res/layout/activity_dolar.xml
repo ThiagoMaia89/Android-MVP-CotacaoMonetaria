@@ -225,7 +225,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/layout_euro"
+        android:id="@+id/layout_copy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -247,7 +247,6 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="15dp"
-            android:onClick="copiarCotacao"
             android:src="@drawable/ic_copy" />
 
     </LinearLayout>
@@ -266,13 +265,12 @@
     </com.google.android.gms.ads.AdView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/floatingHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:backgroundTint="#368BA5"
         android:contentDescription="@string/home"
-        android:onClick="HOME"
         android:src="@drawable/ic_home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/floatingConversor"
@@ -286,11 +284,10 @@
         android:layout_marginBottom="10dp"
         android:backgroundTint="#368BA5"
         android:contentDescription="@string/converter"
-        android:onClick="irConversor"
         android:src="@drawable/conversor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/floatingActionButton"
+        app:layout_constraintStart_toEndOf="@id/floatingHome"
         app:maxImageSize="35dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

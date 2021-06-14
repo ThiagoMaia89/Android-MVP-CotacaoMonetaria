@@ -2,7 +2,6 @@ package com.simplesoftware.cotacao_dolar_e_euro.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,21 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.simplesoftware.cotacao_dolar_e_euro.R;
-import com.simplesoftware.cotacao_dolar_e_euro.model.requests.BitCoin;
-import com.simplesoftware.cotacao_dolar_e_euro.model.requests.Dolar;
-import com.simplesoftware.cotacao_dolar_e_euro.model.requests.DolarTurismo;
-import com.simplesoftware.cotacao_dolar_e_euro.model.requests.Euro;
-import com.simplesoftware.cotacao_dolar_e_euro.model.util.RetrofitConfig;
 import com.simplesoftware.cotacao_dolar_e_euro.presenter.MainActivityContract;
 import com.simplesoftware.cotacao_dolar_e_euro.presenter.MainActivityPresenter;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements MainActivityContract.MvpView {
 
@@ -68,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         bitCoin_arrow = findViewById(R.id.bitCoin_arrow);
         layoutDolar = findViewById(R.id.layout_dolar);
         layoutDolarTurismo = findViewById(R.id.layout_dolar_turismo);
-        layoutEuro = findViewById(R.id.layout_euro);
+        layoutEuro = findViewById(R.id.layout_copy);
         layoutBitCoin = findViewById(R.id.layout_bitcoin);
     }
 
